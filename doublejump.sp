@@ -69,6 +69,9 @@ public void ConVar_OnDoubleJumpForceChanged(ConVar convar, const char[] oldValue
 
 public Action OnPlayerRunCmd(int client, int& buttons, int& impulse, float vel[3], float angles[3], int& weapon, int& subtype, int& cmdnum, int& tickcount, int& seed, int mouse[2])
 {
+	if (client < 1)
+		return Plugin_Continue;
+	
 	static int s_iLastButtons[MAXPLAYERS + 1] = {0, ...};
 	int iGroundEntity = GetEntPropEnt(client, Prop_Send, "m_hGroundEntity");
 
